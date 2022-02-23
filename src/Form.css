@@ -1,0 +1,22 @@
+* {
+  margin-top: 10px;
+  margin-left: 3px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+select {
+  margin-top: 5px;
+  width: 100px
+}
+
+button {
+  width: 100px
+}
