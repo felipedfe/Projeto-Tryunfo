@@ -3,33 +3,66 @@ import Form from './components/Form';
 import Card from './components/Card';
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      nome: '',
+      descricao: '',
+      numeroAttr1: '',
+      numeroAttr2: '',
+      numeroAttr3: '',
+      imagem: '',
+      raridade: 'normal',
+      cardTrunfo: false,
+    };
+  }
+
+  onInputChange = ({ target }) => {
+    const { name } = target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    console.log(value);
+    this.setState(() => ({
+      [name]: value,
+    }));
+  }
+
   render() {
+    const {
+      nome,
+      descricao,
+      numeroAttr1,
+      numeroAttr2,
+      numeroAttr3,
+      raridade,
+      imagem,
+      cardTrunfo } = this.state;
+      console.log(this.state.cardTrunfo);
     return (
       <div>
         <h1>Tryunfo</h1>
         <Form
-          cardName="Tartaruga"
-          cardDescription="Um animal bem lento."
-          cardAttr1="2"
-          cardAttr2="3"
-          cardAttr3="5"
-          cardImage="tartaruga.jpg"
-          cardRare="raro"
+          cardName=""
+          cardDescription=""
+          cardAttr1=""
+          cardAttr2=""
+          cardAttr3=""
+          cardImage=""
+          cardRare=""
           cardTrunfo={ false }
           hasTrunfo={ false }
           isSaveButtonDisabled={ false }
-          onInputChange={ () => {} }
+          onInputChange={ this.onInputChange }
           onSaveButtonClick={ () => {} }
         />
         <Card
-          cardName="Pinguim"
-          cardDescription="Um animal simpático."
-          cardAttr1="2"
-          cardAttr2="7"
-          cardAttr3="9"
-          cardImage="pinguim.jpg"
-          cardRare="raro"
-          cardTrunfo
+          cardName={ nome }
+          cardDescription={ descricao }
+          cardAttr1={ numeroAttr1 }
+          cardAttr2={ numeroAttr2 }
+          cardAttr3={ numeroAttr3 }
+          cardImage={ imagem }
+          cardRare={ raridade }
+          cardTrunfo={ cardTrunfo }
         />
       </div>
     );

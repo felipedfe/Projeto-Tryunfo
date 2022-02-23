@@ -26,7 +26,7 @@ class Form extends React.Component {
             data-testid="name-input"
             type="text"
             name="nome"
-            value={ cardName }
+            // value={ cardName }
             onChange={ onInputChange }
           />
         </label>
@@ -35,7 +35,7 @@ class Form extends React.Component {
           <textarea
             data-testid="description-input"
             name="descricao"
-            value={ cardDescription }
+            // value={ cardDescription }
             onChange={ onInputChange }
           />
         </label>
@@ -45,7 +45,7 @@ class Form extends React.Component {
             data-testid="attr1-input"
             name="numeroAttr1"
             type="number"
-            value={ cardAttr1 }
+            // value={ cardAttr1 }
             onChange={ onInputChange }
           />
         </label>
@@ -55,7 +55,7 @@ class Form extends React.Component {
             data-testid="attr2-input"
             name="numeroAttr2"
             type="number"
-            value={ cardAttr2 }
+            // value={ cardAttr2 }
             onChange={ onInputChange }
           />
         </label>
@@ -65,7 +65,7 @@ class Form extends React.Component {
             data-testid="attr3-input"
             name="numeroAttr3"
             type="number"
-            value={ cardAttr3 }
+            // value={ cardAttr3 }
             onChange={ onInputChange }
           />
         </label>
@@ -75,7 +75,7 @@ class Form extends React.Component {
             data-testid="image-input"
             type="text"
             name="imagem"
-            value={ cardImage }
+            // value={ cardImage }
             onChange={ onInputChange }
           />
         </label>
@@ -83,18 +83,19 @@ class Form extends React.Component {
         <select
           data-testid="rare-input"
           name="raridade"
-          value={ cardRare }
+          // value={ cardRare }
           onChange={ onInputChange }
         >
           <option value="normal">Normal</option>
           <option value="raro">Raro</option>
           <option value="muito raro">Muito raro</option>
         </select>
-        Super Trunfo
+        Super Trunfo:
         <input
           data-testid="trunfo-input"
           type="checkbox"
-          checked={ cardTrunfo }
+          name="cardTrunfo"
+          // checked={ cardTrunfo }
           onChange={ onInputChange }
         />
         <button
