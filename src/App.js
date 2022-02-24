@@ -8,9 +8,9 @@ class App extends React.Component {
     this.state = {
       nome: '',
       descricao: '',
-      numeroAttr1: '',
-      numeroAttr2: '',
-      numeroAttr3: '',
+      numeroAttr1: '0',
+      numeroAttr2: '0',
+      numeroAttr3: '0',
       imagem: '',
       raridade: 'normal',
       cardTrunfo: false,
@@ -18,6 +18,26 @@ class App extends React.Component {
       botaoSalvar: true,
       listaCartas: [],
     };
+  }
+
+  verificaCardTrunfo = (carta) => {
+    console.log(carta);
+    if (carta[0].cardTrunfo) {
+      this.setState({
+        hasTrunfo: false,
+      });
+    }
+  }
+
+  apagaCarta = ({ target }) => {
+    const { name } = target;
+    const { listaCartas } = this.state;
+    console.log(name);
+    const carta = listaCartas.filter((elemento) => elemento.nome === name);
+    this.verificaCardTrunfo(carta);
+    this.setState({
+      listaCartas: listaCartas.filter((card) => card.nome !== name),
+    });
   }
 
   limpaCampos = () => {
@@ -57,13 +77,15 @@ class App extends React.Component {
     }));
     this.limpaCampos();
     this.desabilitaCheckSuperTrunfo();
-    console.log(this.state.listaCartas);
+    // console.log(this.state.listaCartas);
   }
 
   desabilitaCheckSuperTrunfo = () => {
-    if (this.state.cardTrunfo) {
+    const { cardTrunfo } = this.state;
+    if (cardTrunfo) {
       this.setState({
         hasTrunfo: true,
+        cardTrunfo: false,
       });
     }
   }
@@ -76,16 +98,20 @@ class App extends React.Component {
       numeroAttr2,
       numeroAttr3,
     } = this.state;
+    const maxLength = 90;
+    const maxLengthSum = 210;
     if (nome.length < 1
       || descricao.length < 1
       || imagem.length < 1
-      || parseInt(numeroAttr1) + parseInt(numeroAttr2) + parseInt(numeroAttr3) > 210
-      || parseInt(numeroAttr1) > 90
-      || parseInt(numeroAttr2) > 90
-      || parseInt(numeroAttr3) > 90
-      || parseInt(numeroAttr1) < 0
-      || parseInt(numeroAttr2) < 0
-      || parseInt(numeroAttr3) < 0
+      || parseInt(numeroAttr1, 10)
+      + parseInt(numeroAttr2, 10)
+      + parseInt(numeroAttr3, 10) > maxLengthSum
+      || parseInt(numeroAttr1, 10) > maxLength
+      || parseInt(numeroAttr2, 10) > maxLength
+      || parseInt(numeroAttr3, 10) > maxLength
+      || parseInt(numeroAttr1, 10) < 0
+      || parseInt(numeroAttr2, 10) < 0
+      || parseInt(numeroAttr3, 10) < 0
     ) {
       return true;
     }
@@ -105,7 +131,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.listaCartas)
+    // console.log(this.state.listaCartas);
     const {
       nome,
       descricao,
@@ -117,6 +143,7 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
       botaoSalvar,
+      // botaoExcluir,
       listaCartas } = this.state;
 
     return (
@@ -146,18 +173,21 @@ class App extends React.Component {
           cardImage={ imagem }
           cardRare={ raridade }
           cardTrunfo={ cardTrunfo }
+          botaoExcluir={ false }
         />
         <h1>Lista:</h1>
         {listaCartas.map((carta) => (<Card
           key={ carta.nome }
           cardName={ carta.nome }
           cardDescription={ carta.descricao }
-          cardAttr1={ carta.cardAttr1 }
-          cardAttr2={ carta.cardAttr2 }
-          cardAttr3={ carta.cardAttr3 }
+          cardAttr1={ carta.numeroAttr1 }
+          cardAttr2={ carta.numeroAttr2 }
+          cardAttr3={ carta.numeroAttr3 }
           cardImage={ carta.imagem }
           cardRare={ carta.raridade }
           cardTrunfo={ carta.cardTrunfo }
+          botaoExcluir
+          apagaCarta={ this.apagaCarta }
         />))}
       </div>
     );
