@@ -14,6 +14,7 @@ class App extends React.Component {
       imagem: '',
       raridade: 'normal',
       cardTrunfo: false,
+      hasTrunfo: false,
       botaoSalvar: true,
       listaCartas: [],
     };
@@ -55,7 +56,16 @@ class App extends React.Component {
       listaCartas: [...prevState.listaCartas, objetoCarta],
     }));
     this.limpaCampos();
+    this.desabilitaCheckSuperTrunfo();
     console.log(this.state.listaCartas);
+  }
+
+  desabilitaCheckSuperTrunfo = () => {
+    if (this.state.cardTrunfo) {
+      this.setState({
+        hasTrunfo: true,
+      });
+    }
   }
 
   validacao = () => {
@@ -84,7 +94,7 @@ class App extends React.Component {
   onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    console.log(value);
+    console.log('ckecked:', value);
     this.setState({
       [name]: value,
     }, () => {
@@ -105,7 +115,9 @@ class App extends React.Component {
       raridade,
       imagem,
       cardTrunfo,
-      botaoSalvar } = this.state;
+      hasTrunfo,
+      botaoSalvar,
+      listaCartas } = this.state;
 
     return (
       <div>
@@ -118,8 +130,8 @@ class App extends React.Component {
           cardAttr3={ numeroAttr3 }
           cardImage={ imagem }
           cardRare={ raridade }
-          cardTrunfo={ false }
-          hasTrunfo={ false }
+          cardTrunfo={ cardTrunfo }
+          hasTrunfo={ hasTrunfo }
           isSaveButtonDisabled={ botaoSalvar }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
@@ -135,6 +147,18 @@ class App extends React.Component {
           cardRare={ raridade }
           cardTrunfo={ cardTrunfo }
         />
+        <h1>Lista:</h1>
+        {listaCartas.map((carta) => (<Card
+          key={ carta.nome }
+          cardName={ carta.nome }
+          cardDescription={ carta.descricao }
+          cardAttr1={ carta.cardAttr1 }
+          cardAttr2={ carta.cardAttr2 }
+          cardAttr3={ carta.cardAttr3 }
+          cardImage={ carta.imagem }
+          cardRare={ carta.raridade }
+          cardTrunfo={ carta.cardTrunfo }
+        />))}
       </div>
     );
   }

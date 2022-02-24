@@ -20,3 +20,8 @@ select {
 button {
   width: 100px
 }
+
+.carta {
+  border: 2px rgb(173, 173, 173) solid;
+  width: 50%;
+}
