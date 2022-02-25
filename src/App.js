@@ -17,6 +17,7 @@ class App extends React.Component {
       hasTrunfo: false,
       botaoSalvar: true,
       listaCartas: [],
+      valorFiltro: '',
     };
   }
 
@@ -130,6 +131,14 @@ class App extends React.Component {
     });
   }
 
+  filtraNome = ({ target }) => {
+    const { value } = target;
+    this.setState({
+      valorFiltro: value,
+    });
+    console.log(value);
+  }
+
   render() {
     // console.log(this.state.listaCartas);
     const {
@@ -143,12 +152,13 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
       botaoSalvar,
+      valorFiltro,
       // botaoExcluir,
       listaCartas } = this.state;
 
     return (
-      <div>
-        <h1>Tryunfo</h1>
+      <div className="container-principal">
+        {/* <h1>Tryunfo</h1> */}
         <Form
           cardName={ nome }
           cardDescription={ descricao }
@@ -163,32 +173,48 @@ class App extends React.Component {
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
-        <p>-----------------------</p>
-        <Card
-          cardName={ nome }
-          cardDescription={ descricao }
-          cardAttr1={ numeroAttr1 }
-          cardAttr2={ numeroAttr2 }
-          cardAttr3={ numeroAttr3 }
-          cardImage={ imagem }
-          cardRare={ raridade }
-          cardTrunfo={ cardTrunfo }
-          botaoExcluir={ false }
-        />
-        <h1>Lista:</h1>
-        {listaCartas.map((carta) => (<Card
-          key={ carta.nome }
-          cardName={ carta.nome }
-          cardDescription={ carta.descricao }
-          cardAttr1={ carta.numeroAttr1 }
-          cardAttr2={ carta.numeroAttr2 }
-          cardAttr3={ carta.numeroAttr3 }
-          cardImage={ carta.imagem }
-          cardRare={ carta.raridade }
-          cardTrunfo={ carta.cardTrunfo }
-          botaoExcluir
-          apagaCarta={ this.apagaCarta }
-        />))}
+        <div className="preview">
+          <h1>Preview:</h1>
+          <Card
+            cardName={ nome }
+            cardDescription={ descricao }
+            cardAttr1={ numeroAttr1 }
+            cardAttr2={ numeroAttr2 }
+            cardAttr3={ numeroAttr3 }
+            cardImage={ imagem }
+            cardRare={ raridade }
+            cardTrunfo={ cardTrunfo }
+            botaoExcluir={ false }
+          />
+        </div>
+        <div className="lista-cartas">
+          <h1>Lista:</h1>
+          <label htmlFor="buscaNome">
+            Filtro Nome:
+            <input
+              data-testid="name-filter"
+              type="text"
+              name="buscaNome"
+              value={ valorFiltro }
+              onChange={ this.filtraNome }
+            />
+          </label>
+
+          {listaCartas.filter((card) => card.nome.includes(valorFiltro))
+            .map((carta) => (<Card
+              key={ carta.nome }
+              cardName={ carta.nome }
+              cardDescription={ carta.descricao }
+              cardAttr1={ carta.numeroAttr1 }
+              cardAttr2={ carta.numeroAttr2 }
+              cardAttr3={ carta.numeroAttr3 }
+              cardImage={ carta.imagem }
+              cardRare={ carta.raridade }
+              cardTrunfo={ carta.cardTrunfo }
+              botaoExcluir
+              apagaCarta={ this.apagaCarta }
+            />))}
+        </div>
       </div>
     );
   }

@@ -1,6 +1,16 @@
 * {
-  margin-left: 3px;
   margin-top: 10px;
+}
+
+.container-principal {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.lista-cartas, .preview {
+  display: flex;
+  flex-direction: column;
+  width: 244px;
 }
 
 h1 {
@@ -23,5 +33,6 @@ button {
 
 .carta {
   border: 2px rgb(141, 209, 255) solid;
-  width: 50%;
+  height: 370px;
+  width: 240px;
 }
