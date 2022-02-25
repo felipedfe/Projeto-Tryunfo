@@ -1,6 +1,6 @@
 * {
-  margin-top: 10px;
   margin-left: 3px;
+  margin-top: 10px;
 }
 
 h1 {
@@ -14,11 +14,11 @@ form {
 
 select {
   margin-top: 5px;
-  width: 100px
+  width: 100px;
 }
 
 button {
-  width: 100px
+  width: 100px;
 }
 
 .carta {
