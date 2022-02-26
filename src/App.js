@@ -17,7 +17,8 @@ class App extends React.Component {
       hasTrunfo: false,
       botaoSalvar: true,
       listaCartas: [],
-      valorFiltro: '',
+      valorFiltroNome: '',
+      valorFiltroRaridade: 'todas',
     };
   }
 
@@ -134,9 +135,16 @@ class App extends React.Component {
   filtraNome = ({ target }) => {
     const { value } = target;
     this.setState({
-      valorFiltro: value,
+      valorFiltroNome: value,
     });
     console.log(value);
+  }
+
+  filtraRaridade = ({ target }) => {
+    const { value } = target;
+    this.setState({
+      valorFiltroRaridade: value,
+    });
   }
 
   render() {
@@ -152,7 +160,8 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
       botaoSalvar,
-      valorFiltro,
+      valorFiltroNome,
+      valorFiltroRaridade,
       // botaoExcluir,
       listaCartas } = this.state;
 
@@ -187,20 +196,38 @@ class App extends React.Component {
             botaoExcluir={ false }
           />
         </div>
+
+        {/* Lista e filtros de busca */}
         <div className="lista-cartas">
           <h1>Lista:</h1>
           <label htmlFor="buscaNome">
-            Filtro Nome:
+            Filtros de busca:
             <input
               data-testid="name-filter"
               type="text"
+              placeholder="Filtro Nome"
               name="buscaNome"
-              value={ valorFiltro }
+              value={ valorFiltroNome }
               onChange={ this.filtraNome }
             />
           </label>
 
-          {listaCartas.filter((card) => card.nome.includes(valorFiltro))
+          <select
+            data-testid="rare-filter"
+            name="filtroRaridade"
+            value={ valorFiltroRaridade }
+            onChange={ this.filtraRaridade }
+          >
+            <option value="todas">Todas</option>
+            <option value="normal">Normal</option>
+            <option value="raro">Raro</option>
+            <option value="muito raro">Muito raro</option>
+          </select>
+
+          {listaCartas.filter((card) => card.nome.includes(valorFiltroNome))
+            .filter((cartinha) => (valorFiltroRaridade === 'todas'
+              ? cartinha.raridade !== (valorFiltroRaridade)
+              : cartinha.raridade === (valorFiltroRaridade)))
             .map((carta) => (<Card
               key={ carta.nome }
               cardName={ carta.nome }
