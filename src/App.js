@@ -208,6 +208,7 @@ class App extends React.Component {
             <option value="muito raro">Muito raro</option>
           </select>
 
+          {/* Abaixo as cartas são renderizadas na tela */}
           {listaCartas.filter((card) => card.nome.includes(filtroNome))
             .filter((cartinha) => (filtroRaridade === 'todas'
               ? cartinha.raridade !== (filtroRaridade)
