@@ -17,13 +17,12 @@ class App extends React.Component {
       hasTrunfo: false,
       botaoSalvar: true,
       listaCartas: [],
-      valorFiltroNome: '',
-      valorFiltroRaridade: 'todas',
+      filtroNome: '',
+      filtroRaridade: 'todas',
     };
   }
 
   verificaCardTrunfo = (carta) => {
-    console.log(carta);
     if (carta[0].cardTrunfo) {
       this.setState({
         hasTrunfo: false,
@@ -34,7 +33,6 @@ class App extends React.Component {
   apagaCarta = ({ target }) => {
     const { name } = target;
     const { listaCartas } = this.state;
-    console.log(name);
     const carta = listaCartas.filter((elemento) => elemento.nome === name);
     this.verificaCardTrunfo(carta);
     this.setState({
@@ -79,7 +77,6 @@ class App extends React.Component {
     }));
     this.limpaCampos();
     this.desabilitaCheckSuperTrunfo();
-    // console.log(this.state.listaCartas);
   }
 
   desabilitaCheckSuperTrunfo = () => {
@@ -122,7 +119,6 @@ class App extends React.Component {
   onInputChange = ({ target }) => {
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    console.log('ckecked:', value);
     this.setState({
       [name]: value,
     }, () => {
@@ -132,23 +128,14 @@ class App extends React.Component {
     });
   }
 
-  filtraNome = ({ target }) => {
-    const { value } = target;
+  filtraNomeERaridade = ({ target }) => {
+    const { name, value } = target;
     this.setState({
-      valorFiltroNome: value,
-    });
-    console.log(value);
-  }
-
-  filtraRaridade = ({ target }) => {
-    const { value } = target;
-    this.setState({
-      valorFiltroRaridade: value,
+      [name]: value,
     });
   }
 
   render() {
-    // console.log(this.state.listaCartas);
     const {
       nome,
       descricao,
@@ -160,14 +147,12 @@ class App extends React.Component {
       cardTrunfo,
       hasTrunfo,
       botaoSalvar,
-      valorFiltroNome,
-      valorFiltroRaridade,
-      // botaoExcluir,
+      filtroNome,
+      filtroRaridade,
       listaCartas } = this.state;
 
     return (
       <div className="container-principal">
-        {/* <h1>Tryunfo</h1> */}
         <Form
           cardName={ nome }
           cardDescription={ descricao }
@@ -196,27 +181,26 @@ class App extends React.Component {
             botaoExcluir={ false }
           />
         </div>
-
         {/* Lista e filtros de busca */}
         <div className="lista-cartas">
           <h1>Lista:</h1>
-          <label htmlFor="buscaNome">
+          <label htmlFor="filtroNome">
             Filtros de busca:
             <input
               data-testid="name-filter"
               type="text"
               placeholder="Filtro Nome"
-              name="buscaNome"
-              value={ valorFiltroNome }
-              onChange={ this.filtraNome }
+              name="filtroNome"
+              value={ filtroNome }
+              onChange={ this.filtraNomeERaridade }
             />
           </label>
 
           <select
             data-testid="rare-filter"
             name="filtroRaridade"
-            value={ valorFiltroRaridade }
-            onChange={ this.filtraRaridade }
+            value={ filtroRaridade }
+            onChange={ this.filtraNomeERaridade }
           >
             <option value="todas">Todas</option>
             <option value="normal">Normal</option>
@@ -224,10 +208,10 @@ class App extends React.Component {
             <option value="muito raro">Muito raro</option>
           </select>
 
-          {listaCartas.filter((card) => card.nome.includes(valorFiltroNome))
-            .filter((cartinha) => (valorFiltroRaridade === 'todas'
-              ? cartinha.raridade !== (valorFiltroRaridade)
-              : cartinha.raridade === (valorFiltroRaridade)))
+          {listaCartas.filter((card) => card.nome.includes(filtroNome))
+            .filter((cartinha) => (filtroRaridade === 'todas'
+              ? cartinha.raridade !== (filtroRaridade)
+              : cartinha.raridade === (filtroRaridade)))
             .map((carta) => (<Card
               key={ carta.nome }
               cardName={ carta.nome }
