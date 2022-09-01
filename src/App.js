@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import List from './components/List';
 
 class App extends React.Component {
   constructor() {
@@ -15,7 +16,7 @@ class App extends React.Component {
       raridade: 'normal',
       cardTrunfo: false,
       hasTrunfo: false,
-      botaoSalvar: true,
+      botaoSalvarDesabilitado: true,
       listaCartas: [],
       filtroNome: '',
       filtroRaridade: 'todas',
@@ -123,7 +124,7 @@ class App extends React.Component {
       [name]: value,
     }, () => {
       this.setState(() => ({
-        botaoSalvar: this.validacao(),
+        botaoSalvarDesabilitado: this.validacao(),
       }));
     });
   }
@@ -146,7 +147,7 @@ class App extends React.Component {
       imagem,
       cardTrunfo,
       hasTrunfo,
-      botaoSalvar,
+      botaoSalvarDesabilitado,
       filtroNome,
       filtroRaridade,
       listaCartas } = this.state;
@@ -163,12 +164,12 @@ class App extends React.Component {
           cardRare={ raridade }
           cardTrunfo={ cardTrunfo }
           hasTrunfo={ hasTrunfo }
-          isSaveButtonDisabled={ botaoSalvar }
+          isSaveButtonDisabled={ botaoSalvarDesabilitado }
           onInputChange={ this.onInputChange }
           onSaveButtonClick={ this.onSaveButtonClick }
         />
         <div className="preview">
-          <h1>Preview:</h1>
+          <h1 className="label-text preview-text">Pré-visualização:</h1>
           <Card
             cardName={ nome }
             cardDescription={ descricao }
@@ -182,51 +183,13 @@ class App extends React.Component {
           />
         </div>
         {/* Lista e filtros de busca */}
-        <div className="lista-cartas">
-          <h1>Lista:</h1>
-          <label htmlFor="filtroNome">
-            Filtros de busca:
-            <input
-              data-testid="name-filter"
-              type="text"
-              placeholder="Filtro Nome"
-              name="filtroNome"
-              value={ filtroNome }
-              onChange={ this.filtraNomeERaridade }
-            />
-          </label>
-
-          <select
-            data-testid="rare-filter"
-            name="filtroRaridade"
-            value={ filtroRaridade }
-            onChange={ this.filtraNomeERaridade }
-          >
-            <option value="todas">Todas</option>
-            <option value="normal">Normal</option>
-            <option value="raro">Raro</option>
-            <option value="muito raro">Muito raro</option>
-          </select>
-
-          {/* Abaixo as cartas são renderizadas na tela */}
-          {listaCartas.filter((card) => card.nome.includes(filtroNome))
-            .filter((cartinha) => (filtroRaridade === 'todas'
-              ? cartinha.raridade !== (filtroRaridade)
-              : cartinha.raridade === (filtroRaridade)))
-            .map((carta) => (<Card
-              key={ carta.nome }
-              cardName={ carta.nome }
-              cardDescription={ carta.descricao }
-              cardAttr1={ carta.numeroAttr1 }
-              cardAttr2={ carta.numeroAttr2 }
-              cardAttr3={ carta.numeroAttr3 }
-              cardImage={ carta.imagem }
-              cardRare={ carta.raridade }
-              cardTrunfo={ carta.cardTrunfo }
-              botaoExcluir
-              apagaCarta={ this.apagaCarta }
-            />))}
-        </div>
+        <List
+          listaCartas={ listaCartas }
+          filtroNome={ filtroNome }
+          filtroRaridade={ filtroRaridade }
+          filtraNomeERaridade={ this.filtraNomeERaridade }
+          apagaCarta={ this.apagaCarta }
+        />
       </div>
     );
   }
