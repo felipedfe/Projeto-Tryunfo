@@ -1,5 +1,4 @@
 import React from 'react';
-// import '../Form.css';
 import PropTypes from 'prop-types';
 
 class Form extends React.Component {
@@ -45,7 +44,6 @@ class Form extends React.Component {
           Attr01:
           <input
             className="attr-input"
-            data-testid="attr1-input"
             name="numeroAttr1"
             type="number"
             value={ cardAttr1 }
@@ -56,7 +54,6 @@ class Form extends React.Component {
           Attr02:
           <input
             className="attr-input"
-            data-testid="attr2-input"
             name="numeroAttr2"
             type="number"
             value={ cardAttr2 }
@@ -67,7 +64,6 @@ class Form extends React.Component {
           Attr03:
           <input
             className="attr-input"
-            data-testid="attr3-input"
             name="numeroAttr3"
             type="number"
             value={ cardAttr3 }
@@ -78,7 +74,6 @@ class Form extends React.Component {
           Imagem:
           <input
             className="img-input"
-            data-testid="image-input"
             type="text"
             name="imagem"
             value={ cardImage }
