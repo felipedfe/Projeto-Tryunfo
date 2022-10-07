@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Card from './Card';
 
-class List extends React.Component {
+class CardList extends React.Component {
   render() {
     const {
       listaCartas,
@@ -63,7 +63,7 @@ class List extends React.Component {
   }
 }
 
-List.propTypes = {
+CardList.propTypes = {
   apagaCarta: PropTypes.func.isRequired,
   filtroNome: PropTypes.string.isRequired,
   filtroRaridade: PropTypes.string.isRequired,
@@ -71,4 +71,4 @@ List.propTypes = {
   listaCartas: PropTypes.arrayOf(PropTypes.any).isRequired,
 };
 
-export default List;
+export default CardList;

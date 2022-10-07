@@ -15,8 +15,9 @@ class Card extends React.Component {
       apagaCarta } = this.props;
 
     return (
-      <div className="carta">
-        <div className="carta-conteudo">
+      <section className="preview">
+        <h1 className="title">Pré-visualização:</h1>
+        <div className="preview__card-container">
           <div className="name-card-container">
             <h2
               className={
@@ -31,25 +32,27 @@ class Card extends React.Component {
             <img className="image-card" src={ cardImage } alt="" />
           </div>
           <div className="description-container">
-            <p className="description-card">{ cardDescription }</p>
+            <p className="description-card">{cardDescription}</p>
           </div>
           <div className="attributes-container">
-            <p>
+            <span>
               Atributo 1 :
-              <span className="attr-card">{ cardAttr1 }</span>
-            </p>
+              {' '}
+              {cardAttr1}
+              {/* <span className="attr-card">{ cardAttr1 }</span> */}
+            </span>
             <p>
               Atributo 2 :
-              <span className="attr-card">{ cardAttr2 }</span>
+              <span className="attr-card">{cardAttr2}</span>
             </p>
             <p>
               Atributo 3 :
-              <span className="attr-card">{ cardAttr3 }</span>
+              <span className="attr-card">{cardAttr3}</span>
             </p>
             <p>
               Raridade:
               {' '}
-              <span className="rare-card">{ cardRare }</span>
+              <span className="rare-card">{cardRare}</span>
             </p>
           </div>
           {
@@ -66,7 +69,8 @@ class Card extends React.Component {
             </button>
           )}
         </div>
-      </div>
+      </section>
+
     );
   }
 }

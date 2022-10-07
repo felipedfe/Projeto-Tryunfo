@@ -1,7 +1,8 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
-import List from './components/List';
+import CardList from './components/CardList';
+import FilterInput from './components/FilterInput';
 
 class App extends React.Component {
   constructor() {
@@ -153,22 +154,26 @@ class App extends React.Component {
       listaCartas } = this.state;
 
     return (
-      <div className="container-principal">
-        <Form
-          cardName={ nome }
-          cardDescription={ descricao }
-          cardAttr1={ numeroAttr1 }
-          cardAttr2={ numeroAttr2 }
-          cardAttr3={ numeroAttr3 }
-          cardImage={ imagem }
-          cardRare={ raridade }
-          cardTrunfo={ cardTrunfo }
-          hasTrunfo={ hasTrunfo }
-          isSaveButtonDisabled={ botaoSalvarDesabilitado }
-          onInputChange={ this.onInputChange }
-          onSaveButtonClick={ this.onSaveButtonClick }
-        />
-        <div className="preview">
+      <main className="main-section">
+        <section className="form">
+          <h1 className="title">Adicionar nova carta:</h1>
+          <Form
+            cardName={ nome }
+            cardDescription={ descricao }
+            cardAttr1={ numeroAttr1 }
+            cardAttr2={ numeroAttr2 }
+            cardAttr3={ numeroAttr3 }
+            cardImage={ imagem }
+            cardRare={ raridade }
+            cardTrunfo={ cardTrunfo }
+            hasTrunfo={ hasTrunfo }
+            isSaveButtonDisabled={ botaoSalvarDesabilitado }
+            onInputChange={ this.onInputChange }
+            onSaveButtonClick={ this.onSaveButtonClick }
+          />
+        </section>
+
+        <section className="preview">
           <h1 className="label-text preview-text">Pré-visualização:</h1>
           <Card
             cardName={ nome }
@@ -181,16 +186,22 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
             botaoExcluir={ false }
           />
-        </div>
-        {/* Lista e filtros de busca */}
-        <List
-          listaCartas={ listaCartas }
-          filtroNome={ filtroNome }
-          filtroRaridade={ filtroRaridade }
-          filtraNomeERaridade={ this.filtraNomeERaridade }
-          apagaCarta={ this.apagaCarta }
-        />
-      </div>
+        </section>
+
+        <section className="filter">
+          <FilterInput />
+        </section>
+
+        <section className="card-list">
+          <CardList
+            listaCartas={ listaCartas }
+            filtroNome={ filtroNome }
+            filtroRaridade={ filtroRaridade }
+            filtraNomeERaridade={ this.filtraNomeERaridade }
+            apagaCarta={ this.apagaCarta }
+          />
+        </section>
+      </main>
     );
   }
 }
