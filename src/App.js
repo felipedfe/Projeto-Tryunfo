@@ -64,7 +64,7 @@ class App extends React.Component {
       raridade,
       cardTrunfo,
     } = this.state;
-    const objetoCarta = {
+    const cardObject = {
       nome,
       descricao,
       imagem,
@@ -75,7 +75,7 @@ class App extends React.Component {
       cardTrunfo,
     };
     this.setState((prevState) => ({
-      listaCartas: [...prevState.listaCartas, objetoCarta],
+      listaCartas: [...prevState.listaCartas, cardObject],
     }));
     this.limpaCampos();
     this.desabilitaCheckSuperTrunfo();
@@ -155,50 +155,55 @@ class App extends React.Component {
 
     return (
       <main className="main-section">
-        <section className="form">
-          <h1 className="title">Adicionar nova carta:</h1>
-          <Form
-            cardName={ nome }
-            cardDescription={ descricao }
-            cardAttr1={ numeroAttr1 }
-            cardAttr2={ numeroAttr2 }
-            cardAttr3={ numeroAttr3 }
-            cardImage={ imagem }
-            cardRare={ raridade }
-            cardTrunfo={ cardTrunfo }
-            hasTrunfo={ hasTrunfo }
-            isSaveButtonDisabled={ botaoSalvarDesabilitado }
-            onInputChange={ this.onInputChange }
-            onSaveButtonClick={ this.onSaveButtonClick }
-          />
-        </section>
-
-        <section className="preview">
-          <h1 className="label-text preview-text">Pré-visualização:</h1>
-          <Card
-            cardName={ nome }
-            cardDescription={ descricao }
-            cardAttr1={ numeroAttr1 }
-            cardAttr2={ numeroAttr2 }
-            cardAttr3={ numeroAttr3 }
-            cardImage={ imagem }
-            cardRare={ raridade }
-            cardTrunfo={ cardTrunfo }
-            botaoExcluir={ false }
-          />
+        <section className="form-and-preview">
+          <div className="form-container">
+            <h1 className="title">Adicionar nova carta:</h1>
+            <Form
+              cardName={ nome }
+              cardDescription={ descricao }
+              cardAttr1={ numeroAttr1 }
+              cardAttr2={ numeroAttr2 }
+              cardAttr3={ numeroAttr3 }
+              cardImage={ imagem }
+              cardRare={ raridade }
+              cardTrunfo={ cardTrunfo }
+              hasTrunfo={ hasTrunfo }
+              isSaveButtonDisabled={ botaoSalvarDesabilitado }
+              onInputChange={ this.onInputChange }
+              onSaveButtonClick={ this.onSaveButtonClick }
+            />
+          </div>
+          <div className="preview-container">
+            <h1 className="title">Pré-visualização:</h1>
+            <Card
+              cardName={ nome }
+              cardDescription={ descricao }
+              cardAttr1={ numeroAttr1 }
+              cardAttr2={ numeroAttr2 }
+              cardAttr3={ numeroAttr3 }
+              cardImage={ imagem }
+              cardRare={ raridade }
+              cardTrunfo={ cardTrunfo }
+              botaoExcluir={ false }
+              apagaCarta={ this.apagaCarta }
+            />
+          </div>
         </section>
 
         <section className="filter">
-          <FilterInput />
-        </section>
-
-        <section className="card-list">
-          <CardList
-            listaCartas={ listaCartas }
+          <h1 className="title list-title">Todas as cartas:</h1>
+          <FilterInput
             filtroNome={ filtroNome }
             filtroRaridade={ filtroRaridade }
             filtraNomeERaridade={ this.filtraNomeERaridade }
+          />
+        </section>
+        <section className="card-list">
+          <CardList
+            listaCartas={ listaCartas }
             apagaCarta={ this.apagaCarta }
+            filtroNome={ filtroNome }
+            filtroRaridade={ filtroRaridade }
           />
         </section>
       </main>

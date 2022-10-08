@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/form.css';
 
 class Form extends React.Component {
   render() {
@@ -32,7 +33,7 @@ class Form extends React.Component {
         <label className="form__label" htmlFor="descricao">
           Descrição:
           <textarea
-            maxLength="30"
+            maxLength="35"
             className="form__input"
             name="descricao"
             value={ cardDescription }
@@ -72,14 +73,14 @@ class Form extends React.Component {
         <label className="form__label" htmlFor="imagem">
           Imagem:
           <input
-            className="form__input"
+            className="form__image-input"
             type="text"
             name="imagem"
             value={ cardImage }
             onChange={ onInputChange }
           />
         </label>
-        <span className="url-imagem">Inserir URL da imagem &#x21E7;</span>
+        <span className="form__url-warning">Inserir URL da imagem &#x21E7;</span>
         <label className="form__label" htmlFor="raridade">
           Raridade:
           <select
@@ -94,19 +95,29 @@ class Form extends React.Component {
           </select>
         </label>
         <div className="super-trunfo-container">
-          <span className="form__label">Super Trunfo?</span>
           {
             hasTrunfo
-              ? (<p>Você já tem um Super Trunfo em seu baralho</p>)
+              ? (
+                <span className="trunfo-msg">
+                  Você já tem um Super Trunfo em seu baralho
+                </span>
+              )
               : (
-                <input
-                  className="trunfo-input"
-                  type="checkbox"
-                  name="cardTrunfo"
-                  checked={ cardTrunfo }
-                  onChange={ onInputChange }
-                />)
+                <>
+                  <label htmlFor="cardTrunfo">
+                    <input
+                      className="trunfo-input"
+                      type="checkbox"
+                      name="cardTrunfo"
+                      checked={ cardTrunfo }
+                      onChange={ onInputChange }
+                    />
+                  </label>
+                  <span>Super Trunfo</span>
+                </>
+              )
           }
+
         </div>
         <button
           className="form__save-button"
@@ -115,7 +126,7 @@ class Form extends React.Component {
           disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
         >
-          <span>Salvar</span>
+          Salvar
         </button>
       </form>
     );

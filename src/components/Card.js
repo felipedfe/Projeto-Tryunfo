@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/card.css';
 
 class Card extends React.Component {
   render() {
@@ -15,62 +16,53 @@ class Card extends React.Component {
       apagaCarta } = this.props;
 
     return (
-      <section className="preview">
-        <h1 className="title">Pré-visualização:</h1>
-        <div className="preview__card-container">
-          <div className="name-card-container">
-            <h2
-              className={
-                `name-card${cardName.length < 1 ? 'empty-bg' : ''}`
-              }
-            >
-              {cardName}
-
-            </h2>
-          </div>
-          <div className="imagem-conteudo">
-            <img className="image-card" src={ cardImage } alt="" />
-          </div>
-          <div className="description-container">
-            <p className="description-card">{cardDescription}</p>
-          </div>
-          <div className="attributes-container">
-            <span>
-              Atributo 1 :
-              {' '}
-              {cardAttr1}
-              {/* <span className="attr-card">{ cardAttr1 }</span> */}
-            </span>
-            <p>
-              Atributo 2 :
-              <span className="attr-card">{cardAttr2}</span>
-            </p>
-            <p>
-              Atributo 3 :
-              <span className="attr-card">{cardAttr3}</span>
-            </p>
-            <p>
-              Raridade:
-              {' '}
-              <span className="rare-card">{cardRare}</span>
-            </p>
-          </div>
-          {
-            cardTrunfo ? <p className="trunfo-card">*** Super Trunfo! ***</p> : <p />
-          }
-          {botaoExcluir && (
-            <button
-              type="button"
-              className="delete-button"
-              name={ cardName }
-              onClick={ apagaCarta }
-            >
-              Excluir
-            </button>
-          )}
+      <div className="card-container">
+        <div className="card-name-container">
+          <h2
+          // className={ `card-name ${cardName.length < 1 ? 'empty-bg' : ''}` }
+            className="card-name"
+          >
+            {cardName}
+          </h2>
         </div>
-      </section>
-
+        <div className="card-image-container">
+          {cardImage && <img className="image-card" src={ cardImage } alt="" />}
+        </div>
+        <div className="card-description-container">
+          <span className="card-description">{cardDescription}</span>
+        </div>
+        <div className="card-attributes-container">
+          <div className="att-container">
+            <span>Atributo 1</span>
+            <span className="att-value">{cardAttr1}</span>
+          </div>
+          <div className="att-container">
+            <span>Atributo 2</span>
+            <span className="att-value">{cardAttr2}</span>
+          </div>
+          <div className="att-container">
+            <span>Atributo 3</span>
+            <span className="att-value">{cardAttr3}</span>
+          </div>
+          <div className="rarity-container">
+            <span>Raridade</span>
+            <span className="rarity-value">{cardRare}</span>
+          </div>
+        </div>
+        {
+          cardTrunfo && <span className="card-super-trunfo">Super Trunfo!</span>
+        }
+        {botaoExcluir && (
+          <button
+            type="button"
+            className="card-delete-button"
+            name={ cardName }
+            onClick={ apagaCarta }
+          >
+            Excluir
+          </button>
+        )}
+      </div>
     );
   }
 }

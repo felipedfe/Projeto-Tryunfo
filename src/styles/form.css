@@ -1,0 +1,61 @@
+.form-container,
+.preview-container {
+  display: inline-block;
+  margin: auto;
+  width: 50%;
+  top: 0;
+}
+
+.form__form-area {
+  padding: 10px 80px 20px 80px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.form__form-area input:not(input[name="imagem"]),
+textarea,
+.form__form-area span {
+  display: inline-block;
+  margin-bottom: 0.8rem;
+  width: 100%;
+}
+
+.form__form-area select {
+  margin-left: 5px;
+  margin-bottom: 1rem;
+}
+
+.form__image-input {
+  width: 100%;
+}
+
+textarea {
+  height: 100px;
+}
+
+.form__form-area input:not(input[type=checkbox]) {
+  border-radius: 5px;
+  height: 30px;
+}
+
+.form__url-warning {
+  font-size: 0.8rem;
+  width: 100%;
+}
+
+.trunfo-msg {
+  margin: 0;
+  font-size: 0.8rem;
+  color: rgb(255, 62, 62);
+}
+
+.form__save-button {
+  display: block;
+  width: 100%;
+  color: white;
+  font-weight: 600;
+  margin: auto;
+  border: none;
+  background-color: var(--main-color);
+  padding: 10px;
+}
