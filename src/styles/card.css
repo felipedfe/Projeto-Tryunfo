@@ -1,0 +1,114 @@
+.preview-container {
+  border-left: 2px solid var(--darker-color);
+}
+
+.preview-container h1 {
+  margin-bottom: 20px;
+}
+
+.card-container {
+  position: relative;
+  background-color: var(--darker-color);
+  border: 10px solid white;
+  box-shadow: 0px 3.89311px 18.4923px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  margin: auto;
+  width: 360px;
+  height: 530px;
+  padding: 10px;
+}
+
+.card-attributes-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-name-container{
+  color: white;
+  height: 2.5rem;
+  padding: 5px;
+  background-color: var(--main-color);
+  border-top: 2px solid var(--main-color);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.card-name {
+  text-align: right;
+  margin-right: 10px;
+}
+
+.card-image-container {
+  height: 240px;
+  background-color: white;
+}
+
+.image-card {
+  border: 5px solid white;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-description-container {
+  color: white;
+  font-weight: 600;
+  height: 2.5rem;
+  padding: 15px 10px;
+  margin-bottom: 15px;
+  /* background-color: pink; */
+}
+
+.att-container,
+.rarity-container {
+  font-weight: 600;
+  color: white;
+  display: flex;
+  background-color: var(--main-color);
+  padding: 7px 10px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+}
+
+.att-container span,
+.rarity-container span {
+  display: inline-block;
+  width: 100%;
+}
+
+.att-value,
+.rarity-value {
+  text-align: right;
+}
+
+.super-trunfo-container {
+  display: flex;
+  align-items: center;
+}
+
+.super-trunfo-container span {
+  margin-left: 10px;
+}
+
+.card-super-trunfo {
+  position: absolute;
+  right: 7%;
+  top: 48%;
+  background-color: var(--darker-color);
+  padding: 5px;
+  border: 2px solid white;
+  border-radius: 10px;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.card-delete-button {
+  position: absolute;
+  border: none;
+  background-color: rgb(165, 165, 165);
+  padding: 7px;
+  top: 0;
+  left: 0;
+}

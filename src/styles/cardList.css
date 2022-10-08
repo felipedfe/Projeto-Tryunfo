@@ -1,0 +1,14 @@
+.card-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.card-list-container .card-container{
+  margin-bottom: 30px;
+}
+
+.list-title {
+  color: white;
+  margin-top: 20px;
+}

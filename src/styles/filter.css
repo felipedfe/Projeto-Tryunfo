@@ -1,0 +1,20 @@
+.filter__input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  color: white;
+  font-weight: 600;
+  background-color: var(--main-color);
+  width: 90vw;
+  margin: auto;
+  margin-top: 25px;
+  margin-bottom: 35px;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.filter__input-container input,
+.filter__input-container select{
+  margin-left: 5px;
+  height: 25px;
+}

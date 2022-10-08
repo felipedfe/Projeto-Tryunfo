@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../styles/form.css';
 
 class Form extends React.Component {
   render() {
@@ -17,73 +18,73 @@ class Form extends React.Component {
       onSaveButtonClick } = this.props;
 
     return (
-      <form className="form-area">
-        <h1 className="label-text preview-text">Adicionar nova carta:</h1>
-        <label className="label-text" htmlFor="nome">
+      <form className="form__form-area">
+        <label className="form__label" htmlFor="nome">
           Nome da carta:
           <input
             maxLength="20"
-            className="name-input"
+            className="form__input"
             type="text"
             name="nome"
             value={ cardName }
             onChange={ onInputChange }
           />
         </label>
-        <label className="label-text" htmlFor="descricao">
+        <label className="form__label" htmlFor="descricao">
           Descrição:
           <textarea
-            maxLength="30"
-            className="description-input"
+            maxLength="35"
+            className="form__input"
             name="descricao"
             value={ cardDescription }
             onChange={ onInputChange }
           />
         </label>
-        <label className="label-text" htmlFor="numeroAttr1">
+        <label className="form__label" htmlFor="numeroAttr1">
           Attr01:
           <input
-            className="attr-input"
+            className="form__input"
             name="numeroAttr1"
             type="number"
             value={ cardAttr1 }
             onChange={ onInputChange }
           />
         </label>
-        <label className="label-text" htmlFor="numeroAttr2">
+        <label className="form__label" htmlFor="numeroAttr2">
           Attr02:
           <input
-            className="attr-input"
+            className="form__input"
             name="numeroAttr2"
             type="number"
             value={ cardAttr2 }
             onChange={ onInputChange }
           />
         </label>
-        <label className="label-text" htmlFor="numeroAttr3">
+        <label className="form__label" htmlFor="numeroAttr3">
           Attr03:
           <input
-            className="attr-input"
+            className="form__input"
             name="numeroAttr3"
             type="number"
             value={ cardAttr3 }
             onChange={ onInputChange }
           />
         </label>
-        <label className="label-text" htmlFor="imagem">
+        <label className="form__label" htmlFor="imagem">
           Imagem:
           <input
-            className="img-input"
+            className="form__image-input"
             type="text"
             name="imagem"
             value={ cardImage }
             onChange={ onInputChange }
           />
         </label>
-        <span className="url-imagem">Inserir URL da imagem &#x21E7;</span>
-        <label className="label-text" htmlFor="raridade">
+        <span className="form__url-warning">Inserir URL da imagem &#x21E7;</span>
+        <label className="form__label" htmlFor="raridade">
           Raridade:
           <select
+            className="form__select"
             name="raridade"
             value={ cardRare }
             onChange={ onInputChange }
@@ -94,28 +95,38 @@ class Form extends React.Component {
           </select>
         </label>
         <div className="super-trunfo-container">
-          <span className="label-text">Super Trunfo?</span>
           {
             hasTrunfo
-              ? (<p>Você já tem um Super Trunfo em seu baralho</p>)
+              ? (
+                <span className="trunfo-msg">
+                  Você já tem um Super Trunfo em seu baralho
+                </span>
+              )
               : (
-                <input
-                  className="trunfo-input"
-                  type="checkbox"
-                  name="cardTrunfo"
-                  checked={ cardTrunfo }
-                  onChange={ onInputChange }
-                />)
+                <>
+                  <label htmlFor="cardTrunfo">
+                    <input
+                      className="trunfo-input"
+                      type="checkbox"
+                      name="cardTrunfo"
+                      checked={ cardTrunfo }
+                      onChange={ onInputChange }
+                    />
+                  </label>
+                  <span>Super Trunfo</span>
+                </>
+              )
           }
+
         </div>
         <button
-          className="save-button"
+          className="form__save-button"
           type="button"
           name="botaoSalvar"
           disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
         >
-          <span className="save-text">Salvar</span>
+          Salvar
         </button>
       </form>
     );
