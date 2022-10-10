@@ -76,6 +76,7 @@ class App extends React.Component {
     };
     this.setState((prevState) => ({
       listaCartas: [...prevState.listaCartas, cardObject],
+      botaoSalvarDesabilitado: true,
     }));
     this.limpaCampos();
     this.desabilitaCheckSuperTrunfo();

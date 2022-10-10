@@ -59,3 +59,7 @@ textarea {
   background-color: var(--main-color);
   padding: 10px;
 }
+
+.form__save-button:disabled {
+  background-color: rgb(164, 164, 164);
+}
