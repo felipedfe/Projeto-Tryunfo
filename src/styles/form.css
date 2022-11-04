@@ -29,10 +29,6 @@ textarea,
   width: 100%;
 }
 
-textarea {
-  height: 100px;
-}
-
 .form__form-area input:not(input[type=checkbox]) {
   border-radius: 5px;
   height: 30px;

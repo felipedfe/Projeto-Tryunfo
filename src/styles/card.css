@@ -3,7 +3,7 @@
 }
 
 .preview-container h1 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .card-container {
@@ -13,19 +13,21 @@
   box-shadow: 0px 3.89311px 18.4923px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   margin: auto;
-  width: 360px;
-  height: 530px;
+  width: 320px;
+  height: 490px;
   padding: 10px;
 }
 
 .card-attributes-container {
   display: flex;
   flex-direction: column;
+  height: 30%;
 }
 
 .card-name-container{
   color: white;
-  height: 2.5rem;
+  /* height: 2.5rem; */
+  height: 9%;
   padding: 5px;
   background-color: var(--main-color);
   border-top: 2px solid var(--main-color);
@@ -39,7 +41,8 @@
 }
 
 .card-image-container {
-  height: 240px;
+  /* height: 240px; */
+  height: 50%;
   background-color: white;
 }
 
@@ -54,7 +57,8 @@
 .card-description-container {
   color: white;
   font-weight: 600;
-  height: 2.5rem;
+  /* height: 2.5rem; */
+  height: 5%;
   padding: 15px 10px;
   margin-bottom: 15px;
   /* background-color: pink; */
@@ -62,6 +66,7 @@
 
 .att-container,
 .rarity-container {
+  height: 22%;
   font-weight: 600;
   color: white;
   display: flex;

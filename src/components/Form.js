@@ -33,7 +33,8 @@ class Form extends React.Component {
         <label className="form__label" htmlFor="descricao">
           Descrição:
           <textarea
-            maxLength="35"
+            maxLength="30"
+            rows="3"
             className="form__input"
             name="descricao"
             value={ cardDescription }
