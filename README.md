@@ -1,16 +1,16 @@
 # Tryunfo
 ![Tela da aplicação](https://github.com/felipedfe/felipedfe.github.io/blob/main/imagens/02-tryunfo.jpg)
 
-## •Descrição
-Uma aplicação que simula a criação de cartas de Super Trunfo. Ela possui um formulário para preencher os dados das cartas, uma pré-visualização da carta em tempo real e uma lista com as cartas finalizadas. Foi desenvolvida em React utilizando componentes de Classes.
+## •Description
+An application for creating Super Trump cards. It has a form to fill in the data of the cards, a preview of the card in real time and a list with the finished cards. It was developed in React using Class components.
 
-## •Tecnologias e bibliotecas
+## •Technologies and Libraries
 - Javascript
 - HTML
 - CSS
 - React
 
-## •Executando a aplicação
-- Clone o repositório em sua máquina
-- No terminal, instale as dependência da aplicação: ```npm install```
-- Agora é só colocar a aplicação para rodar: ```npm start```
+## •How to run the application
+- Clone the repository on your machine
+- In the terminal, install the application's dependencies: `npm install`
+- Now just put the application to run!: `npm start`
